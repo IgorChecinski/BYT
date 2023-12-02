@@ -1,0 +1,4 @@
+INDEX VERSION 1.134+/Users/igor/Documents/School/BYT/Lab1/.metadata/.plugins/org.eclipse.jdt.core
+169405536.index
+2917569479.index
+1865797976.index
