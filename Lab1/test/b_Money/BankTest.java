@@ -40,6 +40,10 @@ public class BankTest {
 	@Test
 	public void testOpenAccount() throws AccountExistsException {
 		// Testing the handling of opening an account that already exists.
+
+		/*
+        This test failed originally. It is supposed to throw exception if account for given id already exists.
+         */
 		assertThrows(AccountExistsException.class, () -> SweBank.openAccount("Bob"));
 		assertThrows(AccountExistsException.class, () -> SweBank.openAccount("Ulrika"));
 	}
@@ -47,6 +51,10 @@ public class BankTest {
 	@Test
 	public void testDeposit() throws AccountDoesNotExistException {
 		// Testing deposit functionality and exception handling for non-existent accounts.
+
+		/*
+        Test failed originally, due to NullPointerException with Account object reference
+         */
 		assertThrows(AccountDoesNotExistException.class, () -> SweBank.deposit("Boddfgdgb", new Money(2000, SEK)));
 		SweBank.deposit("Ulrika", new Money(5000, SEK));
 		assertEquals(5000, SweBank.getBalance("Ulrika"), 0);
@@ -55,6 +63,10 @@ public class BankTest {
 	@Test
 	public void testWithdraw() throws AccountDoesNotExistException {
 		// Testing withdrawal functionality and exception handling for non-existent accounts.
+
+		/*
+        Test failed originally, due to AccountDoesNotExistException
+         */
 		assertThrows(AccountDoesNotExistException.class, () -> SweBank.withdraw("Boddfgdgb", new Money(2000, SEK)));
 		SweBank.withdraw("Bob", new Money(500, SEK));
 		assertEquals(-500, SweBank.getBalance("Bob"), 0);
@@ -63,6 +75,10 @@ public class BankTest {
 	@Test
 	public void testGetBalance() throws AccountDoesNotExistException {
 		// Testing if the getBalance method correctly returns the account balance.
+
+		/*
+        Test failed originally, due to AccountDoesNotExistException
+         */
 		assertThrows(AccountDoesNotExistException.class, () -> SweBank.getBalance("Boddfgdgb"));
 		assertEquals(0, Nordea.getBalance("Bob"), 0);
 	}
@@ -70,6 +86,10 @@ public class BankTest {
 	@Test
 	public void testTransfer() throws AccountDoesNotExistException {
 		// Testing transfer functionality between accounts, including exception handling.
+
+		 /*
+        Test failed originally, due to AccountDoesNotExistException
+         */
 		assertThrows(AccountDoesNotExistException.class, () -> SweBank.transfer("Bob",Nordea,"sfsdf", new Money(1000,SEK)));
 		assertThrows(AccountDoesNotExistException.class, () -> SweBank.transfer("Bob","sfsdf", new Money(1000,SEK)));
 
@@ -87,6 +107,10 @@ public class BankTest {
 	@Test
 	public void testTimedPayment() throws AccountDoesNotExistException {
 		// Testing the addition, execution, and removal of timed payments.
+
+		/*
+        Test failed originally, due to NullPointerException
+         */
 		SweBank.addTimedPayment("Bob", "1", 1, 0, new Money(10000, SEK), SweBank, "Ulrika");
 		SweBank.tick(); // Simulates the passing of time.
 		assertEquals(10000, SweBank.getBalance("Ulrika"), 0);

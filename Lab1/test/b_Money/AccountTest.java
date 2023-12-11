@@ -23,9 +23,15 @@ public class AccountTest {
 		SweBank.deposit("Alice", new Money(1000000, SEK));
 	}
 
+
+
 	@Test
 	public void testAddRemoveTimedPayment() {
 		// Testing adding and removing timed payments.
+
+		/*
+		 Test originally failed at setUp(), due to NullPointerException from Bank.deposit method
+		 */
 		testAccount.addTimedPayment("1", 1, 1, new Money(10000, SEK), SweBank, "Alice");
 		testAccount.addTimedPayment("2", 1, 1, new Money(10000, SEK), SweBank, "Alice");
 
@@ -40,6 +46,10 @@ public class AccountTest {
 	@Test
 	public void testTimedPayment() throws AccountDoesNotExistException {
 		// Testing the effect of timed payments on account balance.
+
+		/*
+		 Test originally failed at setUp(), due to NullPointerException from Bank.deposit method
+		 */
 		testAccount.addTimedPayment("1", 1, 1, new Money(10000, SEK), SweBank, "Alice");
 		testAccount.tick(); // Simulates the passing of time.
 		testAccount.tick();
@@ -49,6 +59,10 @@ public class AccountTest {
 	@Test
 	public void testAddWithdraw() {
 		// Testing withdrawal functionality and its impact on account balance.
+
+		/*
+		 Test originally failed at setUp(), due to NullPointerException from Bank.deposit method
+		 */
 		testAccount.withdraw(new Money(50000, SEK));
 		assertEquals(9950000, testAccount.getBalance().getAmount(), 0);
 	}
@@ -56,6 +70,10 @@ public class AccountTest {
 	@Test
 	public void testGetBalance() {
 		// Testing if the getBalance method returns the correct balance.
+
+		/*
+		 Test originally failed at setUp(), due to NullPointerException from Bank.deposit method
+		 */
 		assertEquals(10000000, testAccount.getBalance().getAmount(), 0);
 	}
 }
