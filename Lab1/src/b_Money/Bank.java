@@ -61,7 +61,11 @@ public class Bank {
 	 * @throws AccountDoesNotExistException If the account does not exist
 	 */
 
-	/**Wrong because it was throwing AccountDoesNotExistException when it found account in list */
+
+
+	/**Wrong because it was throwing AccountDoesNotExistException when it found account in list
+	 * I have noticed it when i was able to deposit money in test to account that doesn't exist*/
+
 	public void deposit(String accountid, Money money) throws AccountDoesNotExistException {
 		if (!accountlist.containsKey(accountid)) {
 			throw new AccountDoesNotExistException();
@@ -98,7 +102,9 @@ public class Bank {
 	 * @return Balance of the account
 	 * @throws AccountDoesNotExistException If the account does not exist
 	 */
-	public Integer getBalance(String accountid) throws AccountDoesNotExistException {
+
+	/** There was an issue but after fixing openaccount() it works properly*/
+	public double getBalance(String accountid) throws AccountDoesNotExistException {
 		if (!accountlist.containsKey(accountid)) {
 			throw new AccountDoesNotExistException();
 		}
@@ -115,6 +121,8 @@ public class Bank {
 	 * @param amount Amount of Money to transfer
 	 * @throws AccountDoesNotExistException If one of the accounts do not exist
 	 */
+
+	/** There was an issue but after fixing openaccount() it works properly*/
 	public void transfer(String fromaccount, Bank tobank, String toaccount, Money amount) throws AccountDoesNotExistException {
 		if (!accountlist.containsKey(fromaccount) || !tobank.accountlist.containsKey(toaccount)) {
 			throw new AccountDoesNotExistException();
@@ -133,11 +141,12 @@ public class Bank {
 	 * @throws AccountDoesNotExistException If one of the accounts do not exist
 	 */
 
+
+
 	/**
-	 * while transfering to other account which doesn't exists test passed which doesn't make sense
+	 * while transfering to other account which doesn't exist test passed which doesn't make sense
 	 * there is problem wit fromaccout repeated in arguments
 	 */
-
 	public void transfer(String fromaccount, String toaccount, Money amount) throws AccountDoesNotExistException {
 		transfer(fromaccount, this, toaccount, amount);
 	}
@@ -152,6 +161,7 @@ public class Bank {
 	 * @param tobank Bank where receiving account resides
 	 * @param toaccount Id of receiving account
 	 */
+	/** There was an issue but after fixing openaccount() it works properly*/
 	public void addTimedPayment(String accountid, String payid, Integer interval, Integer next, Money amount, Bank tobank, String toaccount) {
 		Account account = accountlist.get(accountid);
 		account.addTimedPayment(payid, interval, next, amount, tobank, toaccount);
@@ -162,6 +172,7 @@ public class Bank {
 	 * @param accountid Id of account to remove timed payment from
 	 * @param id Id of timed payment
 	 */
+	/** There was an issue but after fixing openaccount() it works properly*/
 	public void removeTimedPayment(String accountid, String id) {
 		Account account = accountlist.get(accountid);
 		account.removeTimedPayment(id);

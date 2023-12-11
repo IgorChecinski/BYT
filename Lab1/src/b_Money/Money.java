@@ -18,8 +18,8 @@ public class Money implements Comparable {
 	 * Return the amount of money.
 	 * @return Amount of money in Double type.
 	 */
-	public Integer getAmount() {
-        return this.amount;
+	public double getAmount() {
+        return (double)this.amount;
 	}
 
 	/**
@@ -89,8 +89,7 @@ public class Money implements Comparable {
 	 * @return True if the amount of this Money is equal to 0.0, False otherwise
 	 */
 	public Boolean isZero() {
-		boolean b = this.getAmount() == 0;
-		return b;
+		return this.getAmount() == 0;
 	}
 	/**
 	 * Negate the amount of money, i.e. if the amount is 10.0 SEK the negation returns -10.0 SEK
